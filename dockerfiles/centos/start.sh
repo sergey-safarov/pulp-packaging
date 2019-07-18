@@ -46,7 +46,7 @@ then
     echo db already exists
 else
     echo running db
-    docker run -d --name db -p 27017:27017 pulp/mongodb
+    docker run -d --name db -p 27017:27017 safarov/mongodb
 fi
 
 # try to start an existing one, and only run a new one if that fails
@@ -55,16 +55,16 @@ then
     echo qpid already exists
 else
     echo running qpid
-    docker run -d --name qpid -p 5672:5672 pulp/qpid
+    docker run -d --name qpid -p 5672:5672 safarov/qpid
 fi
 
 # run the setup script that populates $DROOT with boiler-plate config files and
 # data directories
-docker run -it --rm $LINKS $MOUNTS --hostname pulpapi pulp/base bash -c /setup.sh
+docker run -it --rm $LINKS $MOUNTS --hostname pulpapi safarov/base bash -c /setup.sh
 
-docker run $MOUNTS $LINKS -d --name beat pulp/worker beat
-docker run $MOUNTS $LINKS -d --name resource_manager pulp/worker resource_manager
-docker run $MOUNTS $LINKS -d --name worker1 pulp/worker worker 1
-docker run $MOUNTS $LINKS -d --name worker2 pulp/worker worker 2
-docker run $MOUNTS -v $DROOT/var/log/httpd-pulpapi:/var/log/httpd $LINKS -d --name pulpapi --hostname pulpapi -p 443:443 -p 80:80 pulp/apache
-docker run $MOUNTS -v $DROOT/var/log/httpd-crane:/var/log/httpd -d --name crane -p 5000:80 pulp/crane-allinone
+docker run $MOUNTS $LINKS -d --name beat safarov/worker beat
+docker run $MOUNTS $LINKS -d --name resource_manager safarov/worker resource_manager
+docker run $MOUNTS $LINKS -d --name worker1 safarov/worker worker 1
+docker run $MOUNTS $LINKS -d --name worker2 safarov/worker worker 2
+docker run $MOUNTS -v $DROOT/var/log/httpd-pulpapi:/var/log/httpd $LINKS -d --name pulpapi --hostname pulpapi -p 443:443 -p 80:80 safarov/apache
+docker run $MOUNTS -v $DROOT/var/log/httpd-crane:/var/log/httpd -d --name crane -p 5000:80 safarov/crane-allinone

@@ -6,6 +6,6 @@ set -e
 for NAME in base apache admin-client mongodb qpid worker crane crane-allinone
 do
     pushd $NAME
-    docker build -t pulp/$NAME:latest .
+    docker build -t safarov/$NAME:latest .
     popd
 done
