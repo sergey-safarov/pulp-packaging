@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM fedora:28
 MAINTAINER Pulp Team <pulp-list@redhat.com>
 
 RUN yum install -y epel-release && yum clean all

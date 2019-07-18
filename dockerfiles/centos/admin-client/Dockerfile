@@ -1,7 +1,7 @@
-FROM centos:centos7
+FROM fedora:28
 MAINTAINER Pulp Team <pulp-list@redhat.com>
 
-ADD rhel-pulp.repo /etc/yum.repos.d/rhel-pulp.repo
+ADD fedora-pulp.repo /etc/yum.repos.d/fedora-pulp.repo
 
 RUN yum install -y epel-release && yum clean all
 
