@@ -3,7 +3,7 @@ MAINTAINER Pulp Team <pulp-list@redhat.com>
 
 ADD fedora-pulp.repo /etc/yum.repos.d/fedora-pulp.repo
 
-RUN yum install -y epel-release && yum clean all
+#RUN yum install -y epel-release && yum clean all
 
 RUN  yum update -y && \
      yum groupinstall -y \

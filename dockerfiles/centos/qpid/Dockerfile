@@ -1,7 +1,7 @@
 FROM fedora:28
 MAINTAINER Pulp Team <pulp-list@redhat.com>
 
-RUN yum install -y epel-release && yum clean all
+#RUN yum install -y epel-release && yum clean all
 
 RUN  yum update -y && \
      yum install -y qpid-cpp-server python-qpid-qmf python-qpid \
