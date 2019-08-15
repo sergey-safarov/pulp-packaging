@@ -88,7 +88,8 @@ pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2
 ```
 
 **yum repo file**
-yem repo file example
+
+yum repo file example
 ```
 [kamailio-5.2]
 name=Kamailio 5.2 branch
