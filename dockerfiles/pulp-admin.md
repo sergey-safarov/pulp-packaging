@@ -57,6 +57,8 @@ pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2.4
 
 New repo will be avaialable at http://rpm.kamailio.org/centos7/5.2/5.2.4/
 
+**Backup repo**
+
 You can backup repo to server folder using command
 ```sh
 pulp-admin rpm repo export run --repo-id kamailio-centos7-5.2.4 --export-dir /var/lib/pulp/backup
@@ -67,4 +69,14 @@ If used other folder, then need to mount this backup folder into `worker` contai
 Then you can download this backup folder to your local PC using command
 ```sh
 rsync -r root@rpm.kamailio.org:/var/lib/pulp/backup/kamailio-centos7-5.2.4 ~/your_local_pc_backup_folder
+```
+
+**Copy release repo to latest repo**
+
+To copy content of new release repo to latest branch repo need execute this commnads
+```sh
+pulp-admin rpm repo delete --repo-id=kamailio-centos7-5.2
+pulp-admin rpm repo create --repo-id=kamailio-centos7-5.2 --relative-url=centos7/5.2/5.2
+pulp-admin rpm repo copy rpm --from-repo-id=kamailio-centos7-5.2.4 --to-repo-id=kamailio-centos7-5.2
+pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2
 ```
