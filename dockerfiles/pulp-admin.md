@@ -41,7 +41,7 @@ To create new release repo please execute
 ```sh
 pulp-admin rpm repo create \
     --repo-id=kamailio-centos7-5.2.4 \
-    --relative-url=centos7/5.2/5.2.4 \
+    --relative-url=centos/7/5.2/5.2.4 \
     --feed=https://download.opensuse.org/repositories/home:/kamailio:/v5.2.x-rpms/CentOS_7/
 ```
 
@@ -55,7 +55,7 @@ Publish repo
 pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2.4
 ```
 
-New repo will be avaialable at http://rpm.kamailio.org/centos7/5.2/5.2.4/
+New repo will be avaialable at http://rpm.kamailio.org/centos/7/5.2/5.2.4/
 
 **Backup repo**
 
@@ -76,7 +76,7 @@ rsync -r root@rpm.kamailio.org:/var/lib/pulp/backup/kamailio-centos7-5.2.4 ~/you
 To copy content of new release repo to latest branch repo need execute this commnads
 ```sh
 pulp-admin rpm repo delete --repo-id=kamailio-centos7-5.2
-pulp-admin rpm repo create --repo-id=kamailio-centos7-5.2 --relative-url=centos7/5.2/5.2
+pulp-admin rpm repo create --repo-id=kamailio-centos7-5.2 --relative-url=centos/7/5.2/5.2
 pulp-admin rpm repo copy rpm --from-repo-id=kamailio-centos7-5.2.4 --to-repo-id=kamailio-centos7-5.2
 pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2
 ```
