@@ -86,3 +86,15 @@ pulp-admin rpm repo create --repo-id=kamailio-centos7-5.2 --relative-url=centos/
 pulp-admin rpm repo copy rpm --from-repo-id=kamailio-centos7-5.2.4 --to-repo-id=kamailio-centos7-5.2
 pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2
 ```
+
+**yum repo file**
+yem repo file example
+```
+[kamailio-5.2]
+name=Kamailio 5.2 branch
+baseurl=https://rpm.kamailio.org/centos/$releasever/5.2/5.2
+enabled=1
+type=rpm
+gpgcheck=0
+skip_if_unavailable=True
+```
