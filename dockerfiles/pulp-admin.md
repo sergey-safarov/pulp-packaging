@@ -1,7 +1,7 @@
 **Client configration**
 
-Thil manula describe pulp admin client usage packaged into docker image.
-If you want use pulp client instaled on your host, pleach check https://docs.pulpproject.org/user-guide/installation/index.html#instructions
+This manual describes docker packaged pulp admin client usage.
+If you want use pulp client instaled on your host, please check https://docs.pulpproject.org/user-guide/installation/index.html#instructions
 
 ```sh
 mkdir ~/.pulp
@@ -10,7 +10,7 @@ chmod 700 ~/.pulp
 chmod 600 ~/.pulp/admin.conf
 ```
 
-Update content of `~/.pulp/admin.conf` like example and set your login and password.
+Update content of `~/.pulp/admin.conf` file like example and set your login and password.
 ```
 [server]
 host: rpm.kamailio.org
@@ -25,12 +25,12 @@ Test conectivity to pulp server
 docker run -it --rm --network host -v ~/.pulp:/root/.pulp pulp/admin-client pulp-admin repo list
 ```
 
-To simplify commands you can add into `~/.bashrc` file this string
+To simplify commands you can add thisstring into `~/.bashrc` file
 ```
 alias pulp-admin='docker run -it --rm --network host -v ~/.pulp:/root/.pulp pulp/admin-client pulp-admin'
 ```
 
-Then check simple pulp client command
+Then check more simple pulp client command
 ```sh
 pulp-admin repo list
 ```
