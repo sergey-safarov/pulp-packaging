@@ -1,0 +1,58 @@
+**Client configration**
+
+Thil manula describe pulp admin client usage packaged into docker image.
+If you want use pulp client instaled on your host, pleach check https://docs.pulpproject.org/user-guide/installation/index.html#instructions
+
+```sh
+mkdir ~/.pulp
+touch ~/.pulp/admin.conf
+chmod 700 ~/.pulp
+chmod 600 ~/.pulp/admin.conf
+```
+
+Update content of `~/.pulp/admin.conf` like example and set your login and password.
+```
+[server]
+host: rpm.kamailio.org
+
+[auth]
+username: admin
+password: admin
+```
+
+Test conectivity to pulp server
+```sh
+docker run -it --rm --network host -v ~/.pulp:/root/.pulp pulp/admin-client pulp-admin repo list
+```
+
+To simplify commands you can add into `~/.bashrc` file this string
+```
+alias pulp-admin='docker run -it --rm --network host -v ~/.pulp:/root/.pulp pulp/admin-client pulp-admin'
+```
+
+Then check simple pulp client command
+```sh
+pulp-admin repo list
+```
+
+**New release repo configration**
+
+To create new release repo please execute
+```sh
+pulp-admin rpm repo create \
+    --repo-id=kamailio-centos7-5.2.4 \
+    --relative-url=centos7/5.2/5.2.4 \
+    --feed=https://download.opensuse.org/repositories/home:/kamailio:/v5.2.x-rpms/CentOS_7/
+```
+
+Check repo status
+```sh
+pulp-admin repo list --repo-id kamailio-centos7-5.2.4
+```
+
+Publish repo
+```sh
+pulp-admin rpm repo publish run --repo-id kamailio-centos7-5.2.4
+```
+
+New repo will be avaialable at http://rpm.kamailio.org/centos7/5.2/5.2.4/
